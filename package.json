@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bulma": "^0.9.3",
     "mongodb": "^4.4.1",
     "mongoose": "^6.2.6",
     "next": "12.1.0",
