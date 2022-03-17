@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "startdb": "sudo systemctl start mongod",
+    "stopdb": "sudo systemctl stop mongod"
   },
   "dependencies": {
     "bulma": "^0.9.3",
