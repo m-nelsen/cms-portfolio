@@ -1,6 +1,15 @@
 {
   "components": {
-    "header": ["array of components"],
+    "header": [
+      {
+        "feature": "NavBar",
+        "customFields": [
+          {
+            "links": ["Link 1", "Link 2", "Link 3"]
+          }
+        ]
+      }
+    ],
     "body": [
       {
         "feature": "Text",
@@ -27,7 +36,16 @@
         ]
       }
     ],
-    "footer": ["array of components"]
+    "footer": [
+      {
+        "feature": "SiteLinks",
+        "customFields": [
+          {
+            "links": ["Link 1", "Link 2", "Link 3"]
+          }
+        ]
+      }
+    ]
   },
   "layout": "default",
   "title": "Template",
