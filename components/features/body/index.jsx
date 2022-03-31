@@ -3,8 +3,6 @@ import Text from "./Text";
 import ImageTag from "./ImageTag";
 
 const Body = ({ body }) => {
-  console.log("body | props: ", body);
-
   return (
     <div id="body">
       {body.map((e, i) => {
