@@ -1,0 +1,35 @@
+{
+  "components": {
+    "header": ["array of components"],
+    "body": [
+      {
+        "feature": "Text",
+        "customFields": [
+          {
+            "text": "This is example text for the Text feature"
+          }
+        ]
+      },
+      {
+        "feature": "Image",
+        "customFields": [
+          {
+            "src": "https://images.unsplash.com/photo-1648636102089-4af17a90e18e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2113&q=80"
+          }
+        ]
+      },
+      {
+        "feature": "Text",
+        "customFields": [
+          {
+            "text": "This another example of text for the Text feature"
+          }
+        ]
+      }
+    ],
+    "footer": ["array of components"]
+  },
+  "layout": "default",
+  "title": "Template",
+  "description": "This is a description of the template page"
+}
