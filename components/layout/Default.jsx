@@ -1,17 +1,18 @@
 import React from "react";
 import Body from "../features/body";
+import Footer from "../features/footer";
+import Header from "../features/header";
 
 const DefaultLayout = ({ template }) => {
   const { components } = template;
-  const { body } = components;
+  const { body, footer, header } = components;
 
   return (
     <div className="container">
-      <div className="notification is-primary">
-        This container is <strong>centered</strong> on desktop and larger
-        viewports.
-      </div>
+      <div className="notification is-primary"></div>
+      <Header header={header} />
       <Body body={body} />
+      <Footer footer={footer} />
     </div>
   );
 };
