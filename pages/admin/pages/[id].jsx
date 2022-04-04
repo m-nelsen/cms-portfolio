@@ -15,11 +15,13 @@ const PageById = () => {
   console.log("state: ", state);
 
   useEffect(() => {
-    const data = fetch(`http://localhost:3000/api/templateById/${id}`)
-      .then((res) => res.json())
-      .then(({ data }) => {
-        setState(data);
-      });
+    if (id) {
+      const data = fetch(`http://localhost:3000/api/templateById/${id}`)
+        .then((res) => res.json())
+        .then(({ data }) => {
+          setState(data);
+        });
+    }
   }, [id]);
 
   return (
