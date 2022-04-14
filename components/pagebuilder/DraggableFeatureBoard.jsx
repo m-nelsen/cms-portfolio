@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Card from "./Card";
 
 export const DraggableFeatureBoard = (props) => {
-  const { template = {}, onFeatureDrag } = props;
-  const { components = {} } = template;
-  const { body = {}, header = {}, footer = {} } = components;
+  const { component, id, onFeatureDrag } = props;
 
-  const [featureList, setFeatureList] = useState([
-    ...body,
-    ...header,
-    ...footer,
-  ]);
+  const [featureList, setFeatureList] = useState(component);
 
   const dragStart = (e) => {
     const targetItem = e.target.getAttribute("data-id");
@@ -25,12 +20,12 @@ export const DraggableFeatureBoard = (props) => {
 
     let list = new Array(...featureList);
 
-    const dragItem = list.find(
+    const dragItemObject = list.find(
       (element) => element._id === e.dataTransfer.getData("text/plain")
     );
 
     const dragItemIndex = list.findIndex(
-      (element) => element._id === dragItem._id
+      (element) => element._id === dragItemObject._id
     );
 
     const dropItemIndex = list.findIndex(
@@ -41,10 +36,12 @@ export const DraggableFeatureBoard = (props) => {
     list.splice(dragItemIndex, 1);
 
     // Add the dragged item into new index
-    list.splice(dropItemIndex, 0, dragItem);
+    list.splice(dropItemIndex, 0, dragItemObject);
 
-    setFeatureList(list);
-    onFeatureDrag(list);
+    const updatedFeatureList = [...list];
+
+    setFeatureList(updatedFeatureList);
+    onFeatureDrag({ [id]: updatedFeatureList });
   };
 
   return (
@@ -62,7 +59,7 @@ export const DraggableFeatureBoard = (props) => {
               padding: "10px",
             }}
           >
-            {e.feature}
+            <Card feature={e} />
           </li>
         );
       })}
