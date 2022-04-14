@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const componentSchema = new mongoose.Schema({
   feature: { type: String },
-  customFields: [],
+  customFields: [{ type: mongoose.Schema.Types.Mixed }],
 });
 
 const templateSchema = new mongoose.Schema({
