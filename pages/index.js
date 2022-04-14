@@ -13,8 +13,6 @@ export default function Home() {
       });
   }, []);
 
-  console.log("state: ", state);
-
   return (
     <div className={styles.container}>
       <Head>
