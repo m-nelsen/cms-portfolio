@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Card from "./Card";
+import Card from "./Card/Card";
 
 export const DraggableFeatureBoard = (props) => {
   const { component, id, onFeatureDrag } = props;
@@ -48,19 +48,14 @@ export const DraggableFeatureBoard = (props) => {
     <ol onDrop={drop} onDragOver={dragOver}>
       {featureList.map((e, i) => {
         return (
-          <li
+          <Card
             key={`li-${i}`}
-            data-id={e._id}
+            feature={e}
+            dataId={e._id}
             draggable="true"
-            onDragStart={dragStart}
-            onDragOver={dragOver}
-            style={{
-              margin: "15px",
-              padding: "10px",
-            }}
-          >
-            <Card feature={e} />
-          </li>
+            dragStart={dragStart}
+            dragOver={dragOver}
+          />
         );
       })}
     </ol>
