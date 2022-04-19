@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Layout from "../../../components/layout";
-import DraggableFeatureBoard from "../../../components/pagebuilder/DraggableFeatureBoard";
+import CardBoard from "../../../components/pagebuilder/CardBoard";
 
 const PageById = () => {
   const router = useRouter();
@@ -54,25 +54,31 @@ const PageById = () => {
     <>
       {state && (
         <div className="columns" style={{ height: "100vh" }}>
-          <div className="column is-one-fifth has-background-light">
-            <h3 className="title is-3">Header</h3>
-            <DraggableFeatureBoard
-              component={state.components.header}
-              id={"header"}
-              onFeatureDrag={onFeatureDrag}
-            ></DraggableFeatureBoard>
-            <h3 className="title is-3">Body</h3>
-            <DraggableFeatureBoard
-              component={state.components.body}
-              id={"body"}
-              onFeatureDrag={onFeatureDrag}
-            ></DraggableFeatureBoard>
-            <h3 className="title is-3">Footer</h3>
-            <DraggableFeatureBoard
-              component={state.components.footer}
-              id={"footer"}
-              onFeatureDrag={onFeatureDrag}
-            ></DraggableFeatureBoard>
+          <div className="column is-one-fifth has-background-light mx-4 mt-5">
+            <div className="box">
+              <h3 className="title is-3">Header</h3>
+              <CardBoard
+                component={state.components.header}
+                id={"header"}
+                onFeatureDrag={onFeatureDrag}
+              ></CardBoard>
+            </div>
+            <div className="box">
+              <h3 className="title is-3">Body</h3>
+              <CardBoard
+                component={state.components.body}
+                id={"body"}
+                onFeatureDrag={onFeatureDrag}
+              ></CardBoard>
+            </div>
+            <div className="box">
+              <h3 className="title is-3">Footer</h3>
+              <CardBoard
+                component={state.components.footer}
+                id={"footer"}
+                onFeatureDrag={onFeatureDrag}
+              ></CardBoard>
+            </div>
             <button className="button is-dark" onClick={onButtonClick}>
               Save
             </button>

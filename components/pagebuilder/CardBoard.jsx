@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card/Card";
 
-export const DraggableFeatureBoard = (props) => {
+export const CardBoard = (props) => {
   const { component, id, onFeatureDrag } = props;
 
   const [featureList, setFeatureList] = useState(component);
@@ -44,6 +44,17 @@ export const DraggableFeatureBoard = (props) => {
     onFeatureDrag({ [id]: updatedFeatureList });
   };
 
+  const onCardDelete = (e) => {
+    let list = new Array(...featureList);
+
+    const cardId = e.target.getAttribute("data-id");
+
+    const cardIndex = list.findIndex((element) => element._id === cardId);
+
+    list.splice(cardIndex, 1);
+    setFeatureList(list);
+  };
+
   return (
     <ol onDrop={drop} onDragOver={dragOver}>
       {featureList.map((e, i) => {
@@ -55,6 +66,7 @@ export const DraggableFeatureBoard = (props) => {
             draggable="true"
             dragStart={dragStart}
             dragOver={dragOver}
+            onCardDelete={onCardDelete}
           />
         );
       })}
@@ -62,4 +74,4 @@ export const DraggableFeatureBoard = (props) => {
   );
 };
 
-export default DraggableFeatureBoard;
+export default CardBoard;
