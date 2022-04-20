@@ -1,16 +1,29 @@
 import { useState } from "react";
-import "./Card.module.scss";
+import EditCard from "./_children/EditCard";
+import styles from "./index.module.scss";
 
-const Card = ({ dataId, draggable, dragStart, dragOver, feature }) => {
+const Card = ({
+  dataId,
+  draggable,
+  dragStart,
+  dragOver,
+  feature,
+  onCardDelete,
+}) => {
   const [showOptions, setShowOptions] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const onOptionsClick = () => {
     setShowOptions(!showOptions);
   };
 
+  const onEditClick = () => {
+    setShowEditModal(!showEditModal);
+  };
+
   return (
     <li
-      className="card no-style-type"
+      className={`card my-3 ${styles["no-style-type"]}`}
       data-id={dataId}
       draggable={draggable}
       onDragStart={dragStart}
@@ -30,14 +43,19 @@ const Card = ({ dataId, draggable, dragStart, dragOver, feature }) => {
       </header>
       {showOptions && (
         <footer className="card-footer">
-          <a href="#" className="card-footer-item">
+          <button className="card-footer-item" onClick={onEditClick}>
             Edit
-          </a>
-          <a href="#" className="card-footer-item">
+          </button>
+          <button
+            className="card-footer-item"
+            data-id={dataId}
+            onClick={onCardDelete}
+          >
             Delete
-          </a>
+          </button>
         </footer>
       )}
+      {showEditModal && <EditCard feature={feature} />}
     </li>
   );
 };

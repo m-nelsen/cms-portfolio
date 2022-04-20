@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Card from "./Card/Card";
+import Card from "../Card/index.jsx";
 
 export const CardBoard = (props) => {
   const { component, id, onFeatureDrag } = props;
@@ -55,22 +55,32 @@ export const CardBoard = (props) => {
     setFeatureList(list);
   };
 
+  const onCardAdd = (e) => {
+    console.log("onCardAdd: ", e);
+  };
+
   return (
-    <ol onDrop={drop} onDragOver={dragOver}>
-      {featureList.map((e, i) => {
-        return (
-          <Card
-            key={`li-${i}`}
-            feature={e}
-            dataId={e._id}
-            draggable="true"
-            dragStart={dragStart}
-            dragOver={dragOver}
-            onCardDelete={onCardDelete}
-          />
-        );
-      })}
-    </ol>
+    <>
+      <ol onDrop={drop} onDragOver={dragOver}>
+        {featureList.map((e, i) => {
+          return (
+            <Card
+              key={`li-${i}`}
+              feature={e}
+              dataId={e._id}
+              draggable="true"
+              dragStart={dragStart}
+              dragOver={dragOver}
+              onCardDelete={onCardDelete}
+              onCardAdd={onCardAdd}
+            />
+          );
+        })}
+      </ol>
+      <button className="button is-light is-fullwidth" onClick={onCardAdd}>
+        Add Feature
+      </button>
+    </>
   );
 };
 
