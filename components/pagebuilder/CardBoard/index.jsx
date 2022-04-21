@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "../Card/index.jsx";
+import AddCard from "./_children/AddCard";
 
 export const CardBoard = (props) => {
   const { component, id, onFeatureDrag } = props;
 
   const [featureList, setFeatureList] = useState(component);
+  const [showAddCardModal, setShowAddCardModal] = useState(false);
 
   const dragStart = (e) => {
     const targetItem = e.target.getAttribute("data-id");
@@ -38,10 +40,8 @@ export const CardBoard = (props) => {
     // Add the dragged item into new index
     list.splice(dropItemIndex, 0, dragItemObject);
 
-    const updatedFeatureList = [...list];
-
-    setFeatureList(updatedFeatureList);
-    onFeatureDrag({ [id]: updatedFeatureList });
+    setFeatureList(list);
+    onFeatureDrag({ [id]: list });
   };
 
   const onCardDelete = (e) => {
@@ -53,10 +53,20 @@ export const CardBoard = (props) => {
 
     list.splice(cardIndex, 1);
     setFeatureList(list);
+    onFeatureDrag({ [id]: list });
   };
 
   const onCardAdd = (e) => {
-    console.log("onCardAdd: ", e);
+    setShowAddCardModal(!showAddCardModal);
+  };
+
+  const addFeature = (feature) => {
+    let list = new Array(...featureList);
+
+    list.push(feature);
+
+    setFeatureList(list);
+    onFeatureDrag({ [id]: list });
   };
 
   return (
@@ -72,7 +82,6 @@ export const CardBoard = (props) => {
               dragStart={dragStart}
               dragOver={dragOver}
               onCardDelete={onCardDelete}
-              onCardAdd={onCardAdd}
             />
           );
         })}
@@ -80,6 +89,7 @@ export const CardBoard = (props) => {
       <button className="button is-light is-fullwidth" onClick={onCardAdd}>
         Add Feature
       </button>
+      {showAddCardModal && <AddCard addFeature={addFeature} id={id} />}
     </>
   );
 };
