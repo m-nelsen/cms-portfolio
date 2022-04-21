@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Layout from "../../../components/layout";
-import CardBoard from "../../../components/pagebuilder/CardBoard";
+import CardBoard from "../../../components/pagebuilder/CardBoard/index.jsx";
 
 const PageById = () => {
   const router = useRouter();
@@ -84,7 +84,7 @@ const PageById = () => {
             </button>
           </div>
           <div className="column is-four-fifths">
-            <Layout template={state} />
+            <Layout props={state} />
           </div>
         </div>
       )}
