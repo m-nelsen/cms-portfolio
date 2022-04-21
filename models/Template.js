@@ -1,8 +1,15 @@
 import mongoose from "mongoose";
 
 const componentSchema = new mongoose.Schema({
-  feature: { type: String },
-  customFields: [{ type: mongoose.Schema.Types.Mixed }],
+  feature: { type: String, required: true },
+  name: { type: String, required: true },
+  customFields: [
+    {
+      type: { type: String, required: true },
+      text: { type: String },
+      links: { type: Array },
+    },
+  ],
 });
 
 const templateSchema = new mongoose.Schema({
@@ -16,6 +23,7 @@ const templateSchema = new mongoose.Schema({
   },
   title: {
     type: String,
+    required: true,
   },
   layout: {
     type: String,
