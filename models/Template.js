@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 const componentSchema = new mongoose.Schema({
   feature: { type: String, required: true },
   name: { type: String, required: true },
-  customFields: [
+  fields: [
     {
-      type: { type: String, required: true },
-      text: { type: String },
-      links: { type: Array },
+      featureId: { type: String },
+      displayName: { type: String },
+      description: { type: String },
+      type: { type: String },
+      value: { type: mongoose.Schema.Types.Mixed },
     },
   ],
 });

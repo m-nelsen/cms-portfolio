@@ -1,22 +1,36 @@
 import mongoose from "mongoose";
 
-const contentElementSchema = new mongoose.Schema({
-  type: { type: String },
-  content: { type: String },
+const fieldSchema = new mongoose.Schema({
+  type: String,
+  children: [],
+  featureOptions: [
+    {
+      name: { type: String },
+      displayName: { type: String },
+      description: { type: String },
+      type: { type: String },
+      value: { type: mongoose.Schema.Types.Mixed },
+    },
+  ],
 });
 
 const contentSchema = new mongoose.Schema({
-  contentElements: [contentElementSchema],
+  content: [fieldSchema],
   description: {
     type: String,
-    required: true,
   },
   title: {
     type: String,
-    required: [true, "Please add a title"],
-    unique: true,
-    trim: true,
-    maxlength: [160, "Title cannot be more than 160 characters"],
+    required: true,
+  },
+  publishedDate: {
+    type: Date,
+  },
+  updatedDate: {
+    type: Date,
+  },
+  pageUrl: {
+    type: String,
   },
 });
 

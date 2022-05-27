@@ -1,56 +1,33 @@
 {
   "components": {
-    "header": [
-      {
-        "feature": "NavBar",
-        "customFields": [
-          {
-            "links": ["Link 1", "Link 2", "Link 3"],
-            "type": "array"
-          }
-        ]
-      }
-    ],
+    "header": [],
     "body": [
       {
         "feature": "Text",
-        "customFields": [
+        "fields": [
           {
-            "text": "This is example text for the Text feature",
-            "type": "text"
+            "featureId": "hideContent",
+            "displayName": "Hide Content",
+            "description": "",
+            "value": false,
+            "type": "bool"
           }
         ]
       },
       {
         "feature": "Image",
-        "customFields": [
+        "fields": [
           {
-            "text": "https://images.unsplash.com/photo-1648636102089-4af17a90e18e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2113&q=80",
-            "type": "text"
-          }
-        ]
-      },
-      {
-        "feature": "Text",
-        "customFields": [
-          {
-            "text": "This another example of text for the Text feature",
-            "type": "text"
+            "featureId": "imageSource",
+            "displayName": "Image Source",
+            "description": "",
+            "value": "https://images.unsplash.com/photo-1648636102089-4af17a90e18e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2113&q=80",
+            "type": "string"
           }
         ]
       }
     ],
-    "footer": [
-      {
-        "feature": "SiteLinks",
-        "customFields": [
-          {
-            "links": ["Link 1", "Link 2", "Link 3"],
-            "type": "array"
-          }
-        ]
-      }
-    ]
+    "footer": []
   },
   "layout": "default",
   "title": "Template",

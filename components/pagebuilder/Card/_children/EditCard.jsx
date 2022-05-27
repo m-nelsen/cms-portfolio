@@ -1,17 +1,23 @@
 import { useState } from "react";
+import { featuresList } from "../../../features/index";
 
 const EditCard = ({ feature }) => {
-  const { customFields = [] } = feature;
+  const { fields = [] } = feature;
 
   const [showModal, setShowModal] = useState(true);
 
-  console.log("EditCard | feature: ", feature);
+  const selectedFeature =
+    featuresList.find((element) => {
+      return element.name === feature.feature;
+    }) || {};
 
   const closeModal = () => {
     setShowModal(false);
   };
 
-  const onSaveChanges = () => {};
+  const onSubmit = (e) => {
+    console.log("onSubmit: ", e);
+  };
 
   return (
     <div className={`modal ${showModal ? "is-active" : ""}`}>
@@ -26,18 +32,60 @@ const EditCard = ({ feature }) => {
           ></button>
         </header>
         <section className="modal-card-body">
-          <textarea
-            className="textarea"
-            defaultValue={customFields[0].text}
-            placeholder="e.g. Hello world"
-          ></textarea>
+          <form>
+            {Object.entries(selectedFeature.fields).map((field, index) => {
+              const [key, value] = field;
+
+              const {
+                displayName = "",
+                value: fieldValue,
+                featureId,
+              } = fields.find((e) => {
+                return e.featureId === key;
+              }) || [];
+
+              switch (value) {
+                case "string":
+                case "number":
+                  return (
+                    <div className="field" key={`field-${index}`}>
+                      <label htmlFor={`field-${index}`}>
+                        {displayName || key}
+                      </label>
+                      <div className="control">
+                        <input
+                          type="text"
+                          id={`field-${index}`}
+                          name={featureId}
+                        />
+                      </div>
+                    </div>
+                  );
+                case "bool":
+                  return (
+                    <div className="field" key={`field-${index}`}>
+                      <input
+                        className="mr-2"
+                        type="checkbox"
+                        id={`field-${index}`}
+                        name={featureId}
+                        {...(fieldValue ? checked : null)}
+                      />
+                      <label htmlFor={`field-${index}`}>
+                        {displayName || key}
+                      </label>
+                    </div>
+                  );
+                case "oneOf":
+                  return <p>OneOf field type</p>;
+                case "color":
+                  return <p>Color field type</p>;
+                default:
+                  return <p>Missing field type</p>;
+              }
+            })}
+          </form>
         </section>
-        <footer className="modal-card-foot">
-          <button className="button is-success" onClick={onSaveChanges}>
-            Save changes
-          </button>
-          <button className="button">Cancel</button>
-        </footer>
       </div>
     </div>
   );

@@ -2,12 +2,9 @@ import { useState } from "react";
 import { featuresList } from "../../../features";
 import styles from "./AddCard.module.scss";
 
-// const featureList = ["NavBar", "Text", "Image", "SiteLinks"];
-
 const AddCard = ({ addFeature, id }) => {
   const [showModal, setShowModal] = useState(true);
   const [selectValue, setSelectValue] = useState(null);
-  const [customField, setCustomField] = useState([]);
 
   const closeModal = () => {
     setShowModal(false);
@@ -17,7 +14,9 @@ const AddCard = ({ addFeature, id }) => {
     setSelectValue(e.target.value);
   };
 
-  const onSaveChanges = () => {
+  const onSaveChanges = (e) => {
+    e.preventDefault();
+
     addFeature({
       feature: selectValue,
       customFields: [
@@ -31,8 +30,6 @@ const AddCard = ({ addFeature, id }) => {
     closeModal();
   };
 
-  console.log("featuresList: ", Object.entries(featuresList));
-
   return (
     <div className={`modal ${showModal ? "is-active" : ""}`}>
       <div className="modal-background" onClick={closeModal}></div>
@@ -45,7 +42,7 @@ const AddCard = ({ addFeature, id }) => {
             aria-label="close"
           ></button>
         </header>
-        <section className="modal-card-body" onChange={onSelectChange}>
+        <section className="modal-card-body">
           <form>
             <div className="field">
               <label htmlFor="feature-select">Add Feature:</label>
@@ -54,12 +51,13 @@ const AddCard = ({ addFeature, id }) => {
                   className={styles["form-select"]}
                   name="features"
                   id="feature-select"
+                  onChange={onSelectChange}
                 >
                   <option value=""></option>
-                  {Object.entries(featuresList).map((element, index) => {
+                  {featuresList.map((element, index) => {
                     return (
-                      <option key={`option-${index + 1}`} value={element[0]}>
-                        {element[0]}
+                      <option key={`option-${index + 1}`} value={element.name}>
+                        {element.name}
                       </option>
                     );
                   })}

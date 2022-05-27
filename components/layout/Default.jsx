@@ -1,7 +1,4 @@
-import React from "react";
-import Body from "../features/body";
-import Footer from "../features/footer";
-import Header from "../features/header";
+import { Features } from "../features/index";
 
 const DefaultLayout = ({ template }) => {
   const { components } = template;
@@ -10,9 +7,9 @@ const DefaultLayout = ({ template }) => {
   return (
     <div className="container">
       <div className="notification is-primary"></div>
-      <Header header={header} />
-      <Body body={body} />
-      <Footer footer={footer} />
+      <Features props={header} />
+      <Features props={body} />
+      <Features props={footer} />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-const Pages = () => {
+export const Admin = () => {
   const [state, setState] = useState([]);
 
   useEffect(() => {
-    const data = fetch("http://localhost:3000/api/content")
+    fetch("http://localhost:3000/api/content")
       .then((res) => res.json())
       .then(({ data }) => {
         setState(data);
@@ -15,7 +15,7 @@ const Pages = () => {
     <>
       <nav className="navbar is-primary">
         <div className="navbar-item">
-          <h1>Pages</h1>
+          <h1 className="is-size-1">Pages</h1>
         </div>
       </nav>
       <div>
@@ -29,10 +29,32 @@ const Pages = () => {
                   </div>
                   <div className="card-content">{page.description}</div>
                   <footer className="card-footer">
-                    <a href={`/admin/pages/${page._id}`} className="card-footer-item">
+                    <a
+                      href={`/admin/pages/${page._id}`}
+                      className="card-footer-item"
+                    >
                       Edit
                     </a>
-                    <a href="" className="card-footer-item">
+                    <a
+                      href=""
+                      className="card-footer-item"
+                      data-id={page._id}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        const dataId = event.target.getAttribute("data-id");
+
+                        fetch(
+                          `http://localhost:3000/api/contentById/${dataId}`,
+                          {
+                            method: "DELETE",
+                          }
+                        )
+                          .then((res) => console.log("DELETE SUCCESS: ", res))
+                          .catch((error) => {
+                            throw new Error(error);
+                          });
+                      }}
+                    >
                       Delete
                     </a>
                   </footer>
@@ -45,4 +67,4 @@ const Pages = () => {
   );
 };
 
-export default Pages;
+export default Admin;

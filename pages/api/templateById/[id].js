@@ -22,6 +22,7 @@ const templateFindById = async (req, res) => {
         const data = await Template.findOneAndUpdate(
           { _id: id },
           JSON.parse(req.body),
+          // req.body,
           {
             upsert: true,
           }

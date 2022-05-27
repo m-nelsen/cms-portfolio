@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Card from "../Card/index.jsx";
 import AddCard from "./_children/AddCard";
+import { GlobalContext } from "../../../pages/admin/pages/[id].jsx";
 
 export const CardBoard = (props) => {
   const { component, id, onFeatureDrag } = props;
 
   const [featureList, setFeatureList] = useState(component);
   const [showAddCardModal, setShowAddCardModal] = useState(false);
+
+  const globalContext = useContext(GlobalContext);
+
+  console.log("globalContext: ", globalContext);
 
   const dragStart = (e) => {
     const targetItem = e.target.getAttribute("data-id");

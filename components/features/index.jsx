@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import SiteLinks from "./SiteLinks";
 import Text from "./Text";
 
-const Features = ({ props }) => {
+export const Features = ({ props }) => {
   return (
     <div>
       {props.map((e, i) => {
@@ -17,7 +17,7 @@ const Features = ({ props }) => {
           case "NavBar":
             return <NavBar key={`feature-${i}`} props={e} />;
           case "SiteLinks":
-            return <SiteLinks key={`feature-${i}`} props={e} id={1234} />;
+            return <SiteLinks key={`feature-${i}`} props={e} />;
           case "Text":
             return <Text key={`feature-${i}`} props={e} />;
           default:
@@ -28,4 +28,7 @@ const Features = ({ props }) => {
   );
 };
 
-export default Features;
+export const featuresList = [Banner, ImageTag, NavBar, SiteLinks, Text];
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {};

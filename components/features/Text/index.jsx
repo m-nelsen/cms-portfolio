@@ -1,6 +1,6 @@
 import React from "react";
 
-const Text = ({ props, id }) => {
+const Text = ({ props }) => {
   const { customFields = [] } = props;
 
   return (
@@ -12,10 +12,6 @@ const Text = ({ props, id }) => {
   );
 };
 
-Text.fields = {
-  id: "number",
-  password: "string",
-  isTrue: "bool",
-};
+Text.fields = { hideContent: "bool", testBool: "bool" };
 
 export default Text;

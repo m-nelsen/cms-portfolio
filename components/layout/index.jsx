@@ -1,12 +1,11 @@
-import React from "react";
 import Default from "../layout/Default";
 
-const Layout = ({ template }) => {
-  const { layout } = template;
+const Layout = ({ props }) => {
+  const { layout } = props;
 
   switch (layout) {
     case "default":
-      return <Default template={template} />;
+      return <Default template={props} />;
     default:
       return <p>No layout found</p>;
   }

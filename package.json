@@ -1,5 +1,5 @@
 {
-  "name": "cms-portfolio",
+  "name": "next-cms",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,17 +11,19 @@
     "stopdb": "sudo systemctl stop mongod"
   },
   "dependencies": {
-    "bulma": "^0.9.3",
-    "mongodb": "^4.4.1",
-    "mongoose": "^6.2.6",
-    "next": "12.1.0",
-    "prop-types": "^15.8.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "bulma": "^0.9.4",
+    "mongod": "^2.0.0",
+    "mongoose": "^6.3.3",
+    "next": "12.1.6",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "slate": "^0.78.0",
+    "slate-history": "^0.66.0",
+    "slate-react": "^0.79.0"
   },
   "devDependencies": {
-    "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0",
-    "sass": "^1.50.0"
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.6",
+    "sass": "^1.51.0"
   }
 }
