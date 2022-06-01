@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export const Admin = () => {
   const [state, setState] = useState([]);
@@ -11,11 +12,30 @@ export const Admin = () => {
       });
   }, []);
 
+  const isLoggedIn = useSession().status === "authenticated";
+
   return (
     <>
       <nav className="navbar is-primary">
-        <div className="navbar-item">
-          <h1 className="is-size-1">Pages</h1>
+        <div className="navbar-menu">
+          <div className="navbar-start">
+            <div className="navbar-item">
+              <h1 className="is-size-1">Pages</h1>
+            </div>
+          </div>
+          <div className="navbar-end">
+            <div className="navbar-item">
+              {(!isLoggedIn && (
+                <button
+                  onClick={() =>
+                    signIn(undefined, { callbackUrl: "/admin/pages" })
+                  }
+                >
+                  Sign In
+                </button>
+              )) || <button onClick={() => signOut()}>Sign Out</button>}
+            </div>
+          </div>
         </div>
       </nav>
       <div>
@@ -49,7 +69,13 @@ export const Admin = () => {
                             method: "DELETE",
                           }
                         )
-                          .then((res) => console.log("DELETE SUCCESS: ", res))
+                          .then((res) =>
+                            console.log(
+                              res.status === 200
+                                ? "Successfully deleted!"
+                                : "Error: Not deleted."
+                            )
+                          )
                           .catch((error) => {
                             throw new Error(error);
                           });
