@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 export const Home = () => {
   return (
@@ -10,7 +11,9 @@ export const Home = () => {
       </Head>
 
       <main>
-        <a href="/admin/pages">Admin Page</a>
+        <Link href="/admin/pages">
+          <a>Admin Page</a>
+        </Link>
       </main>
     </div>
   );
